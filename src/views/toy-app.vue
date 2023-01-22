@@ -4,8 +4,8 @@
     <toy-filter @setFilter="setFilter" />
     <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" />
 
-    <button @click="setPage(-1)">Prev</button>
-    <button @click="setPage(1)">Next</button>
+    <button @click="setPage(-1)" class="btn btn-primary">Prev</button>
+    <button @click="setPage(1)" class="btn btn-primary">Next</button>
     <!-- <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" /> -->
     <!-- <pre>{{ toys }}</pre> -->
 
@@ -43,7 +43,7 @@ export default {
       if (!this.filterBy) return this.toys
       const regex = new RegExp(this.filterBy.vendor, 'i')
       const filtered = this.toys.filteredToys.filter((toy) => regex.test(toy.vendor))
-      console.log('filtered $$$$', filtered);
+      // console.log('filtered $$$$', filtered);
       return filtered
       // return this.toys.filteredToys.filter((toy) => regex.test(toy.vendor))
     },
@@ -56,8 +56,8 @@ export default {
         // .then((some) => console.log(some, 'some'))
 
         .then(({ totalPages, filteredToys }) => {
-          console.log(filteredToys, 'filteredToys FRONTEND')
-          console.log(totalPages, 'totalPages FRONTEND')
+          // console.log(filteredToys, 'filteredToys FRONTEND')
+          // console.log(totalPages, 'totalPages FRONTEND')
 
             ; (this.totalPages = totalPages), (this.toys = filteredToys)
         })
