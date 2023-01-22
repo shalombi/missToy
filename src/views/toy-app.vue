@@ -2,7 +2,7 @@
   <section class="toy-app container flex flex-col gap-1">
     <button @click="goToEdit" class="btn btn-secondary">Add a new toy</button>
     <toy-filter @setFilter="setFilter" />
-    <toy-list @removeToy="removeToy" v-if="toys" :toys="toysToShow" />
+    <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" />
 
     <button @click="setPage(-1)">Prev</button>
     <button @click="setPage(1)">Next</button>
@@ -22,30 +22,50 @@ export default {
   name: 'toy-app',
   data() {
     return {
-      filterBy: null,
+      toys: [],
+      filterBy: {
+        byVendor: '',
+        page: 0,
+      },
+      totalPages: 0,
     }
+  },
+  methods: {
+
   },
   computed: {
     toys() {
       return this.$store.getters.toys
     },
-    toysToShow() {
 
+    toysToShow() {
+      // console.log('this.toys', '$$$$$', this.toys.filteredToys);
       if (!this.filterBy) return this.toys
       const regex = new RegExp(this.filterBy.vendor, 'i')
-      return this.toys.filter((toy) => regex.test(toy.vendor))
+      const filtered = this.toys.filteredToys.filter((toy) => regex.test(toy.vendor))
+      console.log('filtered $$$$', filtered);
+      return filtered
+      // return this.toys.filteredToys.filter((toy) => regex.test(toy.vendor))
     },
   },
   created() { },
   methods: {
     loadToys() {
       // toyService.query().then((toys) => (this.toys = toys))
-      this.$store.dispatch({ type: 'loadToys' })
+      this.$store.dispatch({ type: 'loadToys', filterBy: this.filterBy })
+        // .then((some) => console.log(some, 'some'))
+
+        .then(({ totalPages, filteredToys }) => {
+          console.log(filteredToys, 'filteredToys FRONTEND')
+          console.log(totalPages, 'totalPages FRONTEND')
+
+            ; (this.totalPages = totalPages), (this.toys = filteredToys)
+        })
 
     },
-    setFilter(filterBy) {
-      this.filterBy = filterBy
-    },
+    // setFilter(filterBy) {
+    //   this.filterBy = filterBy
+    // },
     goToEdit() {
       this.$router.push(`/toy/edit`)
     },
@@ -54,7 +74,19 @@ export default {
     },
     // setPage(dir) {
     //   this.$store.dispatch({ type: 'setPage', dir })
-    // }
+    // },
+    setPage(dir) {
+      console.log(this.filterBy);
+      this.filterBy.page += +dir
+      if (this.filterBy.page > this.totalPages - 1) this.filterBy.page = 0
+      if (this.filterBy.page < 0) this.filterBy.page = this.totalPages - 1
+      this.loadToys()
+    },
+    setFilter(filterBy) {
+      this.filterBy = { ...filterBy, page: this.filterBy.page }
+      this.loadToys()
+    },
+
   },
   components: {
     toyList,

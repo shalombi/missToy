@@ -12,6 +12,7 @@ export default {
   },
   mutations: {
     setToys(state, { toys }) {
+      // console.log()
       state.toys = toys
     },
     removeToy(state, { id }) {
@@ -31,11 +32,19 @@ export default {
     }
   },
   actions: {
-    loadToys({ commit }) {
-      httpService.get('toy/')
+    // loadCars() {
+    //   carService.query(this.filterBy)
+    //     .then(({ totalPages, filteredCars }) => {
+    //       ; (this.totalPages = totalPages), (this.cars = filteredCars)
+    //     })
+    // },
+
+    loadToys({ commit }, { filterBy }) {
+      return httpService.get('toy/', filterBy)
         .then(toys => {
           console.log('toys', toys)
           commit({ type: 'setToys', toys })
+          return Promise.resolve(toys)
         })
     },
 
@@ -46,31 +55,30 @@ export default {
         })
     },
     saveToy({ commit }, { toy }) {
-if(toy._id){
-  console.log('TOY@@@@@', toy)
-  httpService.put(`toy/${toy._id}`, toy)
-    .then(toy => {
-      commit({ type: 'saveToy', toy })
-    })
-}
-else{
-  httpService.post('toy/', toy)
-    .then(toy => {
-      commit({ type: 'saveToy', toy })
-    })
-}
+      if (toy._id) {
+        console.log('TOY@@@@@', toy)
+        httpService.put(`toy/${toy._id}`, toy)
+          .then(toy => {
+            commit({ type: 'saveToy', toy })
+          })
+      }
+      else {
+        httpService.post('toy/', toy)
+          .then(toy => {
+            commit({ type: 'saveToy', toy })
+          })
+      }
       // toyService.save(toy).then((toy) => {
       //   commit({ type: 'saveToy', toy })
       // })
 
     },
 
-    setPage(context,{dir}){
-        this.filterBy.page += +dir
-        if (this.filterBy.page > this.totalPages - 1) this.filterBy.page = 0
-        if (this.filterBy.page < 0) this.filterBy.page = this.totalPages - 1
-        this.loadCars()
-
-    }
+    // setPage(context, { dir }) {
+    //   this.filterBy.page += +dir
+    //   if (this.filterBy.page > this.totalPages - 1) this.filterBy.page = 0
+    //   if (this.filterBy.page < 0) this.filterBy.page = this.totalPages - 1
+    //   this.loadCars()
+    // }
   },
 }

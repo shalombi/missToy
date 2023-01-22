@@ -29,15 +29,17 @@ app.use(cors(corsOptions))
 
 // LIST
 app.get('/api/toy', (req, res) => {
-  const { byVendor, page } = req.query
-
+  const { vendor, page } = req.query
+  // console.log(vendor, page, ';;;***');
   const filterBy = {
-    byVendor: byVendor || '',
+    vendor: vendor || '',
     page: +page || 0,
   }
-  toyService.query(filterBy).then((toys) => {
-    res.send(toys)
-  })
+  toyService.query(filterBy)
+    .then((toys) => {
+      console.log(toys,'HOOO TOYS TO FRONTEND')
+      res.send(toys)
+    })
 })
 
 // READ

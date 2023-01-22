@@ -10,16 +10,19 @@ module.exports = {
 
 const itemsPerPage = 2
 function query(filterBy) {
-  console.log(filterBy,'filterBy')
-  const { byVendor, page } = filterBy
+  console.log(filterBy,'***** filterBy')
+  const { vendor, page } = filterBy
   console.log('page:', page)
 
-  const regex = new RegExp(byVendor, 'i')
+  const regex = new RegExp(vendor, 'i')
   let filteredToys = gToys.filter((toy) => regex.test(toy.vendor))
 
   const startIdx = page * itemsPerPage
   const totalPages = Math.ceil(filteredToys.length / itemsPerPage)
   filteredToys = filteredToys.slice(startIdx, startIdx + itemsPerPage)
+  console.log('filteredToys ?????',filteredToys)
+  console.log('totalPages ?????',totalPages)
+
   return Promise.resolve({ totalPages, filteredToys })
 }
 
