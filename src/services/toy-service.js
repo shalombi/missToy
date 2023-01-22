@@ -29,13 +29,13 @@ function save(toy) {
   return storageService.post(KEY, toy)
 }
 
-function getEmptyToy() {
-  return {
-    vendor: '',
-    speed: 0,
-    price: 0,
-  }
-}
+// function getEmptyToy() {
+//   return {
+//     name: '',
+//     price: 0,
+//     price: 0,
+//   }
+// }
 
 
 
@@ -48,25 +48,24 @@ function getEmptyToy() {
 //   "inStock": true
 //   }
 
-// function getEmptyToy() {
-//   return {
-// vendor: '',
-//     name: '',
-//     inStock: true,
-//     price: 0,
-//     createdAt: Date.now(),
-//     labels: ['Doll', 'Battery Powerd'],
-//     reviews: [],
-//   }
-// }
+function getEmptyToy() {
+  return {
+    name: '',
+    inStock: true,
+    price: 0,
+    createdAt: Date.now(),
+    labels: ['Doll', 'Battery Powerd'],
+    reviews: [],
+  }
+}
 
 function _createToys() {
   let toys = utilService.loadFromStorage(KEY)
   if (!toys || !toys.length) {
     toys = [
-      { id: utilService.makeId(), vendor: 'Fiat', speed: 30, price: 980 },
-      { id: utilService.makeId(), vendor: 'Honda', speed: 87, price: 500 },
-      { id: utilService.makeId(), vendor: 'Toyota', speed: 54, price: 305 },
+      { id: utilService.makeId(), name: 'Fiat', price: 30, price: 980 },
+      { id: utilService.makeId(), name: 'Honda', price: 87, price: 500 },
+      { id: utilService.makeId(), name: 'Toyota', price: 54, price: 305 },
     ]
     utilService.saveToStorage(KEY, toys)
   }

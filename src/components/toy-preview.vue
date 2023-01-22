@@ -3,12 +3,12 @@
     <custom-card>
       <template #header>
         <!-- {{ toy }} -->
-        <p><span class="fw-bold">Vendor:</span> {{ toy.vendor }}</p>
-        <p><span class="fw-bold">Price:</span> {{ $filters.currencyUSD(toy.speed) }}</p>
+        <p><span class="fw-bold">Name:</span> {{ toy.name }}</p>
+        <p><span class="fw-bold">Price:</span> {{ $filters.currencyUSD(toy.price) }}</p>
 
         <!-- {{ toy  }} -->
-        <!-- <p><span class="fw-bold">Vendor:</span> {{ toy.vendor }}</p>
-        <p><span class="fw-bold">Speed:</span> {{ toy }}</p>
+        <!-- <p><span class="fw-bold">Name:</span> {{ toy.name }}</p>
+        <p><span class="fw-bold">Price:</span> {{ toy }}</p>
         <p><span class="fw-bold">Price:</span> {{ $filters.currencyUSD(toy.price) }}</p> -->
       </template>
 
@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     goToDetail() {
+      console.log(this.toy,'toy...###')
       this.$router.push(`/toy/${this.toy._id}`)
     },
     goToEdit() {

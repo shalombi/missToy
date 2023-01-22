@@ -4,13 +4,13 @@
     <!-- {{  toyToEdit }} -->
     <form @submit.prevent="saveToy" class="form">
       <div class="form-control">
-        <label for="txt" class="form-label">Toy Vendor</label>
-        <input required v-model="toyToEdit.vendor" id="txt" type="text" class="form-input"
-          placeholder="Enter your toy vendor here..." />
+        <label for="txt" class="form-label">Toy Name</label>
+        <input required v-model="toyToEdit.name" id="txt" type="text" class="form-input"
+          placeholder="Enter your toy name here..." />
       </div>
       <div class="form-control">
-        <label for="speed" class="form-label">Toy Speed</label>
-        <input required v-model.number="toyToEdit.speed" id="speed" type="number" class="form-input" />
+        <label for="price" class="form-label">Toy Price</label>
+        <input required v-model.number="toyToEdit.price" id="price" type="number" class="form-input" />
       </div>
       <div class="btn-group">
         <button @click="saveToy" class="btn btn-info">save</button>
@@ -37,10 +37,10 @@ export default {
     if (id) {
       httpService.get(`toy/${id}`)
         .then((toy) => {
-        this.toyToEdit = toy
+          this.toyToEdit = toy
         })
     }
-     else this.toyToEdit = toyService.getEmptyToy()
+    else this.toyToEdit = toyService.getEmptyToy()
   },
   methods: {
     goBack() {

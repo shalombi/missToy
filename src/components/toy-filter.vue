@@ -1,7 +1,7 @@
 <template>
   <section class="toy-filter">
-    <input v-focus v-model="filterBy.vendor" @input="setFilter" type="text" class="form-input"
-      placeholder="Search vendor..." />
+    <input v-focus v-model="filterBy.name" @input="setFilter" type="text" class="form-input"
+      placeholder="Search name..." />
   </section>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       filterBy: {
-        vendor: '',
+        name: '',
       },
     }
   },

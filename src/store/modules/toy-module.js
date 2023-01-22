@@ -47,6 +47,14 @@ export default {
           return Promise.resolve(toys)
         })
     },
+    // loadToy({ commit }, { toyId }) {
+    //   return httpService.get(`toy/${toyId}`, filterBy)
+    //     .then(toy => {
+    //       console.log('toy', toy)
+    //       // commit({ type: 'setToys', toy })
+    //       return Promise.resolve(toy)
+    //     })
+    // },
 
     removeToy({ commit }, { id }) {
       httpService.delete(`toy/${id}`)

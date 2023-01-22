@@ -30,13 +30,13 @@ const url = 'toy/'
 //   })
 
 // httpService.post(url, {
-//   "vendor": "best_best toy",
-//   "speed": 5566,
+//   "name": "best_best toy",
+//   "price": 5566,
 // })
 
 // httpService.delete(url, {
-//   "vendor": "best_best toy",
-//   "speed": 5566,
+//   "name": "best_best toy",
+//   "price": 5566,
 //   "_id": "0qEJb"
 // })
 

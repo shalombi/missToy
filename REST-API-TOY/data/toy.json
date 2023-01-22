@@ -1,47 +1,47 @@
 [
   {
     "_id": "qmBlG",
-    "vendor": "dssu",
-    "speed": 0
+    "name": "dssu",
+    "price": 0
   },
   {
-    "vendor": "ssss",
-    "speed": 0,
+    "name": "ssss",
+    "price": 0,
     "_id": "wXSVB"
   },
   {
-    "vendor": "kkkkk",
-    "speed": 0,
+    "name": "kkkkk",
+    "price": 0,
     "_id": "48cLA"
   },
   {
-    "vendor": "fff",
-    "speed": 0,
+    "name": "fff",
+    "price": 0,
     "_id": "x78X8"
   },
   {
     "_id": "v5muy",
-    "vendor": "ssj",
-    "speed": 0
+    "name": "ssj",
+    "price": 0
   },
   {
-    "vendor": "jj",
-    "speed": 0,
+    "name": "jj",
+    "price": 0,
     "_id": "b0ng1"
   },
   {
-    "vendor": "kmk",
-    "speed": 0,
+    "name": "kmk",
+    "price": 0,
     "_id": "AhrlK"
   },
   {
-    "vendor": "sss",
-    "speed": 0,
+    "name": "sss",
+    "price": 0,
     "_id": "TPgl2"
   },
   {
-    "vendor": "dd",
-    "speed": 0,
+    "name": "dd",
+    "price": 0,
     "_id": "H0zqx"
   }
 ]

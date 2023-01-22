@@ -24,7 +24,7 @@ export default {
     return {
       toys: [],
       filterBy: {
-        byVendor: '',
+        byName: '',
         page: 0,
       },
       totalPages: 0,
@@ -41,11 +41,11 @@ export default {
     toysToShow() {
       // console.log('this.toys', '$$$$$', this.toys.filteredToys);
       if (!this.filterBy) return this.toys
-      const regex = new RegExp(this.filterBy.vendor, 'i')
-      const filtered = this.toys.filteredToys.filter((toy) => regex.test(toy.vendor))
+      const regex = new RegExp(this.filterBy.name, 'i')
+      const filtered = this.toys.filteredToys.filter((toy) => regex.test(toy.name))
       // console.log('filtered $$$$', filtered);
       return filtered
-      // return this.toys.filteredToys.filter((toy) => regex.test(toy.vendor))
+      // return this.toys.filteredToys.filter((toy) => regex.test(toy.name))
     },
   },
   created() { },
@@ -59,7 +59,7 @@ export default {
           // console.log(filteredToys, 'filteredToys FRONTEND')
           // console.log(totalPages, 'totalPages FRONTEND')
 
-            ; (this.totalPages = totalPages), (this.toys = filteredToys)
+          ; (this.totalPages = totalPages), (this.toys = filteredToys)
         })
 
     },

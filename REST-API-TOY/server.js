@@ -29,15 +29,15 @@ app.use(cors(corsOptions))
 
 // LIST
 app.get('/api/toy', (req, res) => {
-  const { vendor, page } = req.query
-  // console.log(vendor, page, ';;;***');
+  const { name, page } = req.query
+  // console.log(name, page, ';;;***');
   const filterBy = {
-    vendor: vendor || '',
+    name: name || '',
     page: +page || 0,
   }
   toyService.query(filterBy)
     .then((toys) => {
-      console.log(toys,'HOOO TOYS TO FRONTEND')
+      console.log(toys, 'HOOO TOYS TO FRONTEND')
       res.send(toys)
     })
 })
@@ -52,27 +52,28 @@ app.get('/api/toy/:toyId', (req, res) => {
 
 // ADD
 app.post('/api/toy/', (req, res) => {
-  const { vendor, speed } = req.body
+  const { name, price } = req.body
 
   const toy = {
-    vendor,
-    speed,
+    name,
+    price,
   }
 
-  toyService.save(toy).then((savedToy) => {
-    res.send(savedToy)
-  })
+  toyService.save(toy)
+    .then((savedToy) => {
+      res.send(savedToy)
+    })
 })
 
 // UPDATE
 app.put('/api/toy/:toyId', (req, res) => {
   // TODO: EXPRESS.JSON()
-  const { vendor, speed, _id } = req.body
+  const { name, price, _id } = req.body
 
   const toy = {
     _id,
-    vendor,
-    speed,
+    name,
+    price,
   }
   toyService.save(toy).then((savedToy) => {
     res.send(savedToy)
