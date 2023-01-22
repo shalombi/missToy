@@ -14,7 +14,7 @@ import toyPreview from './toy-preview.vue'
 export default {
   props: {
     toys: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

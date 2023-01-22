@@ -3,6 +3,9 @@
     <button @click="goToEdit" class="btn btn-secondary">Add a new toy</button>
     <toy-filter @setFilter="setFilter" />
     <toy-list @removeToy="removeToy" v-if="toys" :toys="toysToShow" />
+
+    <button @click="setPage(-1)">Prev</button>
+    <button @click="setPage(1)">Next</button>
     <!-- <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" /> -->
     <!-- <pre>{{ toys }}</pre> -->
 
@@ -13,6 +16,7 @@
 import { toyService } from '../services/toy-service.js'
 import toyFilter from '../components/toy-filter.vue'
 import toyList from '../components/toy-list.vue'
+import { httpService } from '../services/http.service'
 
 export default {
   name: 'toy-app',
@@ -35,7 +39,9 @@ export default {
   created() { },
   methods: {
     loadToys() {
-      toyService.query().then((toys) => (this.toys = toys))
+      // toyService.query().then((toys) => (this.toys = toys))
+      this.$store.dispatch({ type: 'loadToys' })
+
     },
     setFilter(filterBy) {
       this.filterBy = filterBy
@@ -46,6 +52,9 @@ export default {
     removeToy(toyId) {
       this.$store.dispatch({ type: 'removeToy', id: toyId })
     },
+    // setPage(dir) {
+    //   this.$store.dispatch({ type: 'setPage', dir })
+    // }
   },
   components: {
     toyList,

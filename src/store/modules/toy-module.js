@@ -64,5 +64,13 @@ else{
       // })
 
     },
+
+    setPage(context,{dir}){
+        this.filterBy.page += +dir
+        if (this.filterBy.page > this.totalPages - 1) this.filterBy.page = 0
+        if (this.filterBy.page < 0) this.filterBy.page = this.totalPages - 1
+        this.loadCars()
+
+    }
   },
 }
