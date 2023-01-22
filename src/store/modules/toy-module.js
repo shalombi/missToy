@@ -32,13 +32,6 @@ export default {
     }
   },
   actions: {
-    // loadCars() {
-    //   carService.query(this.filterBy)
-    //     .then(({ totalPages, filteredCars }) => {
-    //       ; (this.totalPages = totalPages), (this.cars = filteredCars)
-    //     })
-    // },
-
     loadToys({ commit }, { filterBy }) {
       return httpService.get('toy/', filterBy)
         .then(toys => {
@@ -47,15 +40,6 @@ export default {
           return Promise.resolve(toys)
         })
     },
-    // loadToy({ commit }, { toyId }) {
-    //   return httpService.get(`toy/${toyId}`, filterBy)
-    //     .then(toy => {
-    //       console.log('toy', toy)
-    //       // commit({ type: 'setToys', toy })
-    //       return Promise.resolve(toy)
-    //     })
-    // },
-
     removeToy({ commit }, { id }) {
       httpService.delete(`toy/${id}`)
         .then(() => {
