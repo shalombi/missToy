@@ -4,15 +4,22 @@ import { toyService } from '../../services/toy-service'
 export default {
   state: {
     toys: null,
+    page: null,
   },
   getters: {
     toys(state) {
       return state.toys
     },
+    page(state) {
+      return state.page
+    },
   },
   mutations: {
+    updatePage(state, { page }) {
+      console.log('page ppppp', page)
+      state.page = page
+    },
     setToys(state, { toys }) {
-      // console.log()
       state.toys = toys
     },
     removeToy(state, { id }) {
@@ -47,7 +54,7 @@ export default {
         })
     },
     saveToy({ commit }, { toy }) {
-      console.log(toy,'toy>>>');
+      console.log(toy, 'toy>>>');
       if (toy._id) {
         console.log('TOY@@@@@', toy)
         httpService.put(`toy/${toy._id}`, toy)

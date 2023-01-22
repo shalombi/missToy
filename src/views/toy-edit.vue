@@ -17,8 +17,11 @@
       </div>
     </form>
   </section>
-  {{ toyToEdit }}
+
+  <pre>{{ toyToEdit }}</pre>
+  <h1 v-if="filterBy"> Page:{{ filterBy.page }}</h1>
 </template>
+
 <script>
 
 import { httpService } from '../services/http.service'
@@ -29,9 +32,16 @@ export default {
   data() {
     return {
       toyToEdit: null,
+      filterBy: {
+        name: null,
+        page: null,
+      }
     }
   },
+
   created() {
+    this.filterBy.page = this.$store.getters.page || 0
+
     const { id } = this.$route.params
     if (id) {
       httpService.get(`toy/${id}`)
@@ -40,6 +50,7 @@ export default {
         })
     }
     else this.toyToEdit = toyService.getEmptyToy()
+
   },
   methods: {
     goBack() {
@@ -48,8 +59,9 @@ export default {
     saveToy() {
       this.$store.dispatch({ type: 'saveToy', toy: this.toyToEdit })
         .then(() => {
+          this.$store.dispatch({ type: 'loadToys', filterBy: this.filterBy })
           this.$router.push('/toy')
-          this.$store.dispatch({ type: 'loadToys' })
+
         })
     },
   },

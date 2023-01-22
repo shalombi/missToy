@@ -20,8 +20,8 @@ function query(filterBy) {
   const startIdx = page * itemsPerPage
   const totalPages = Math.ceil(filteredToys.length / itemsPerPage)
   filteredToys = filteredToys.slice(startIdx, startIdx + itemsPerPage)
-  console.log('filteredToys ?????', filteredToys)
-  console.log('totalPages ?????', totalPages)
+  // console.log('filteredToys ?????', filteredToys)
+  // console.log('totalPages ?????', totalPages) 
 
   return Promise.resolve({ totalPages, filteredToys })
 }
