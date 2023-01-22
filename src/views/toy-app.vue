@@ -61,7 +61,7 @@ export default {
 
           ; (this.totalPages = totalPages), (this.toys = filteredToys)
         })
-
+// n
     },
     // setFilter(filterBy) {
     //   this.filterBy = filterBy
@@ -81,7 +81,7 @@ export default {
       if (this.filterBy.page > this.totalPages - 1) this.filterBy.page = 0
       if (this.filterBy.page < 0) this.filterBy.page = this.totalPages - 1
       this.$store.commit({ type: "updatePage", page: this.filterBy.page })
-      
+
       this.loadToys()
     },
     setFilter(filterBy) {
