@@ -3,7 +3,12 @@
     <toy-preview @removeToy="removeToy" v-for="toy in toys.filteredToys" :toy="toy" :key="toy.id" />
   </ul>
 
-  <pre v-if="toys">{{ toys }}</pre>
+  <!-- <pre v-if="toys">{{ toys }}</pre> -->
+  <details>
+      <summary>{{ toys.filteredToys.length }} items</summary>
+      <pre v-if="toys">{{ toys }}</pre> 
+  </details>
+  
 </template>
 
 

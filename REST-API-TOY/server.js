@@ -52,11 +52,15 @@ app.get('/api/toy/:toyId', (req, res) => {
 
 // ADD
 app.post('/api/toy/', (req, res) => {
-  const { name, price } = req.body
+  const { name, price, createdAt, inStock, labels, reviews, } = req.body
 
   const toy = {
     name,
     price,
+    createdAt,
+    inStock,
+    labels,
+    reviews,
   }
 
   toyService.save(toy)

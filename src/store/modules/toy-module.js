@@ -47,6 +47,7 @@ export default {
         })
     },
     saveToy({ commit }, { toy }) {
+      console.log(toy,'toy>>>');
       if (toy._id) {
         console.log('TOY@@@@@', toy)
         httpService.put(`toy/${toy._id}`, toy)
@@ -57,6 +58,7 @@ export default {
       else {
         httpService.post('toy/', toy)
           .then(toy => {
+            // console.log(toy,'toy>>>')
             commit({ type: 'saveToy', toy })
           })
       }

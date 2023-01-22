@@ -1,5 +1,4 @@
 <template>
-  kmkkm
   <section v-if="toyToEdit" class="toy-edit py-2">
     <!-- {{  toyToEdit }} -->
     <form @submit.prevent="saveToy" class="form">
@@ -18,8 +17,8 @@
       </div>
     </form>
   </section>
+  {{ toyToEdit }}
 </template>
-
 <script>
 
 import { httpService } from '../services/http.service'
@@ -50,6 +49,7 @@ export default {
       this.$store.dispatch({ type: 'saveToy', toy: this.toyToEdit })
         .then(() => {
           this.$router.push('/toy')
+          this.$store.dispatch({ type: 'loadToys' })
         })
     },
   },
