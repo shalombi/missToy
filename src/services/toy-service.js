@@ -44,7 +44,8 @@ function getEmptyToy() {
     inStock: true,
     price: 0,
     createdAt: Date.now(),
-    labels: ['Doll', 'Battery Powerd'],
+    // labels: ['All','Doll', 'Battery Powered'],
+    labels: ['All'],
     reviews: [],
   }
 }

@@ -6,9 +6,6 @@
 
     <button @click="setPage(-1)" class="btn btn-primary">Prev</button>
     <button @click="setPage(1)" class="btn btn-primary">Next</button>
-    <!-- <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" /> -->
-    <!-- <pre>{{ toys }}</pre> -->
-
   </section>
 </template>
 
@@ -38,43 +35,28 @@ export default {
       return this.$store.getters.toys
     },
 
-    toysToShow() {
-      // console.log('this.toys', '$$$$$', this.toys.filteredToys);
-      if (!this.filterBy) return this.toys
-      const regex = new RegExp(this.filterBy.name, 'i')
-      const filtered = this.toys.filteredToys.filter((toy) => regex.test(toy.name))
-      // console.log('filtered $$$$', filtered);
-      return filtered
-      // return this.toys.filteredToys.filter((toy) => regex.test(toy.name))
-    },
+    // toysToShow() {
+    //   if (!this.filterBy) return this.toys
+    //   const regex = new RegExp(this.filterBy.name, 'i')
+    //   const filtered = this.toys.filteredToys.filter((toy) => regex.test(toy.name))
+    //   return filtered
+    // },
   },
   created() { },
   methods: {
     loadToys() {
-      // toyService.query().then((toys) => (this.toys = toys))
       this.$store.dispatch({ type: 'loadToys', filterBy: this.filterBy })
-        // .then((some) => console.log(some, 'some'))
-
         .then(({ totalPages, filteredToys }) => {
-          // console.log(filteredToys, 'filteredToys FRONTEND')
-          // console.log(totalPages, 'totalPages FRONTEND')
-
           ; (this.totalPages = totalPages), (this.toys = filteredToys)
         })
-// n
     },
-    // setFilter(filterBy) {
-    //   this.filterBy = filterBy
-    // },
+
     goToEdit() {
       this.$router.push(`/toy/edit`)
     },
     removeToy(toyId) {
       this.$store.dispatch({ type: 'removeToy', id: toyId })
     },
-    // setPage(dir) {
-    //   this.$store.dispatch({ type: 'setPage', dir })
-    // },
     setPage(dir) {
       console.log(this.filterBy);
       this.filterBy.page += +dir

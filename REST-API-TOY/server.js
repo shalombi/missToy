@@ -29,11 +29,14 @@ app.use(cors(corsOptions))
 
 // LIST
 app.get('/api/toy', (req, res) => {
-  const { name, page } = req.query
+  const { name, page, label,inStock } = req.query
   // console.log(name, page, ';;;***');
   const filterBy = {
     name: name || '',
     page: +page || 0,
+    label: label || 'All',
+    inStock: inStock || null
+    // inStock: JSON.parse(inStock),
   }
   toyService.query(filterBy)
     .then((toys) => {
