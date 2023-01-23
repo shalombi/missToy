@@ -45,7 +45,7 @@ function getEmptyToy() {
     price: 0,
     createdAt: Date.now(),
     // labels: ['All','Doll', 'Battery Powered'],
-    labels: ['All'],
+    labels: ['All','Baby'],
     reviews: [],
   }
 }

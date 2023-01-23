@@ -5,6 +5,8 @@
 /** VIEWS **/
 @import './views/app.css';
 @import './views/toy-app.css';
+@import './views/toy-chart.css';
+
 
 /** COMPONENTS **/
 @import './components/toy-list.css';

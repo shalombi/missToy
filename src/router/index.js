@@ -4,6 +4,7 @@ import about from '../views/about.vue'
 import toyApp from '../views/toy-app.vue'
 import toyDetails from '../views/toy-details.vue'
 import toyEdit from '../views/toy-edit.vue'
+import toysChart from '../views/toys-chart.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: about,
+    },
+    {
+      path: '/chart',
+      name: 'toys-chart',
+      component: toysChart,
     },
   ],
 })

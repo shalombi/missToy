@@ -8,9 +8,18 @@ module.exports = {
   save,
 }
 
+// var XfilterBy = {
+//   byName: '',
+//   page: 0,
+// }
+
+
 const itemsPerPage = 2
+// function query(filterBy=XfilterBy) {
 function query(filterBy) {
-  console.log(filterBy, '***** filterBy')
+  console.log(filterBy, '*****%%%%%%filterBy')
+  const allToys = gToys
+
   const { name, page, label, inStock } = filterBy
   console.log('page:', page)
 
@@ -30,7 +39,8 @@ function query(filterBy) {
   const totalPages = Math.ceil(filteredToys.length / itemsPerPage)
   filteredToys = filteredToys.slice(startIdx, startIdx + itemsPerPage)
 
-  return Promise.resolve({ totalPages, filteredToys })
+  return Promise.resolve({ totalPages, filteredToys, allToys })
+
 }
 
 function getById(toyId) {

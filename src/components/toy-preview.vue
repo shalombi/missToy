@@ -36,14 +36,14 @@ export default {
   },
   methods: {
     goToDetail() {
-      console.log(this.toy,'toy...###')
+      // console.log(this.toy,'toy...###')
       this.$router.push(`/toy/${this.toy._id}`)
     },
     goToEdit() {
       this.$router.push(`/toy/edit/${this.toy._id}`)
     },
     removeToy(toyId) {
-      console.log('[[[id]]]', toyId)
+      // console.log('[[[id]]]', toyId)
       this.$emit('removeToy', toyId)
     },
   },

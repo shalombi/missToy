@@ -44,7 +44,7 @@ export default {
 
   methods: {
     setFilter({ target }) {
-      console.log(target, '>>> target')
+      // console.log(target, '>>> target')
       if (target.name === 'inStock') {
         this.filterBy.inStock = !this.filterBy.inStock
       }

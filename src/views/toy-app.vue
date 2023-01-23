@@ -4,6 +4,8 @@
     <toy-filter @setFilter="setFilter" />
     <toy-list @removeToy="removeToy" v-if="toys" :toys="toys" />
 
+    <router-link to="/chart"> <button class="btn btn-info">Chart</button></router-link>
+
     <button @click="setPage(-1)" class="btn btn-primary">Prev</button>
     <button @click="setPage(1)" class="btn btn-primary">Next</button>
   </section>
@@ -13,6 +15,9 @@
 import { toyService } from '../services/toy-service.js'
 import toyFilter from '../components/toy-filter.vue'
 import toyList from '../components/toy-list.vue'
+// import toysChart from '../components/toys-chart.vue'
+
+// toys-chart.vue
 import { httpService } from '../services/http.service'
 
 export default {
@@ -58,7 +63,7 @@ export default {
       this.$store.dispatch({ type: 'removeToy', id: toyId })
     },
     setPage(dir) {
-      console.log(this.filterBy);
+      // console.log(this.filterBy);
       this.filterBy.page += +dir
       if (this.filterBy.page > this.totalPages - 1) this.filterBy.page = 0
       if (this.filterBy.page < 0) this.filterBy.page = this.totalPages - 1
@@ -67,6 +72,7 @@ export default {
       this.loadToys()
     },
     setFilter(filterBy) {
+      console.log(';;;pppsdcdknckwdncnii')
       this.filterBy = { ...filterBy, page: this.filterBy.page }
       this.loadToys()
     },

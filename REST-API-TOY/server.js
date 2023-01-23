@@ -97,7 +97,7 @@ app.delete('/api/toy/:toyId', (req, res) => {
 
 // LOGIN
 app.post('/login', (req, res) => {
-  console.log('req.body:', req.body)
+  // console.log('req.body:', req.body)
   res.cookie('user', req.body)
   res.send('logging  in')
 })
