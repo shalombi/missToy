@@ -3,14 +3,15 @@
     <input v-focus v-model="filterBy.name" @input="setFilter" type="text" class="form-input"
       placeholder="Search name..." />
 
-    <!-- <label for="">All -->
+    <label>
       <select @change="setFilter" v-model="filterBy.label">
-        <option value="All">All</option>
-        <option value="Doll">Doll</option>
-        <option value="Battery Powered">Battery Powered</option>
-        <option value="Baby">Baby</option>
+   
+      <option value="All">All</option>
+      <option value="Doll">Doll</option>
+      <option value="Battery Powered">Battery Powered</option>
+      <option value="Baby">Baby</option>
       </select>
-    <!-- </label> -->
+    </label>
 
 
     <label>
@@ -30,7 +31,7 @@ export default {
     return {
       filterBy: {
         name: '',
-        label: '',
+        label: 'All',
         inStock: true,
       },
     }
