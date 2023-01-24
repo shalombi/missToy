@@ -3,14 +3,18 @@
 <template>
   <h3 class="chart-subtitle">Average Price Of Product Category</h3>
   <DoughnutChart :chartData="getDataPriceAvg" v-if="toys" />
+  <h3 class="chart-subtitle">Data Of Stock</h3>
+  <BarChart :chartData="getDataLabelStock" v-if="toys" :options="options" />
 
-    <!-- toys:<pre>{{ toys }}</pre> -->
+
+  toys:<pre>{{ toys }}</pre>
   <!-- <pre v-if="toys">{{ getDataPriceAvg }}</pre> -->
 </template>
 
 <script>
 
 import { DoughnutChart } from 'vue-chart-3';
+import { BarChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables)
@@ -20,7 +24,7 @@ export default {
   // props: {
   //     data: Object
   // },
-  components: { DoughnutChart },
+  components: { DoughnutChart, BarChart },
   data() {
     return {
       toys: null,
@@ -48,30 +52,17 @@ export default {
     //   return this.$store.getters.toys
     // },
     getDataPriceAvg() {
-
       const data = this.labels.map(label => {
-        // console.log('label', label)
-        // return
-
-        // return
-        // console.log('+++label', label)
-
-        console.log('+++', this.toys)
-        
+        // console.log('+++', this.toys)
         const filteredToys = this.toys.filter(toy =>
-        toy.labels.includes(label)
+          toy.labels.includes(label)
         )
-        // console.log('###', filteredToys)
-        
-        
-        // return 900
-        
         return filteredToys.reduce(
           (avgPrice, toy) => avgPrice + (toy.price / filteredToys.length),
           0
-          )
+        )
       })
-      // return data
+      // console.log('labels',this.labels)
       // console.log('data',data)
       return {
         labels: this.labels,
@@ -79,7 +70,6 @@ export default {
           {
             label: 'Price Avg',
             borderRadius: 6,
-            //should be an array:
             data,
             backgroundColor: ["#77CEFF", "orange", "green"],
           },
@@ -87,6 +77,33 @@ export default {
       }
     },
 
+
+    getDataLabelStock() {
+      const data = this.labels.map(label => {
+        return this.toys.reduce(
+
+          (acc, toy) =>
+            toy.labels.includes(label) && toy.inStock
+              ? acc + 1
+              : acc,
+          0
+          
+        )
+      })
+      console.log('labels',this.labels)
+      console.log('data',data)
+      return {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'Stock Data',
+            borderRadius: 6,
+            data,
+            backgroundColor: ["#77CEFF", "orange", "#123E6B"]
+          },
+        ],
+      }
+    }
 
   }
 
